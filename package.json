@@ -1,0 +1,41 @@
+{
+  "name": "sdk-demo",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "precommit": "lint-staged",
+    "build": "webpack --config ./build/webpack.config.js",
+    "create:fullpackage": "node ./build/create.fullpackage.js",
+    "create:package": "node ./build/create.package.js & npm run create:fullpackage"
+  },
+  "lint-staged": {
+    "packages/**/*.{js,jsx}": [
+      "./node_modules/.bin/eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "babel-preset-stage-2": "^6.24.1",
+    "camelcase": "^5.3.1",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.18.0",
+    "husky": "^3.0.0",
+    "lerna": "^3.15.0",
+    "lint-staged": "^9.2.0",
+    "shelljs": "^0.8.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
