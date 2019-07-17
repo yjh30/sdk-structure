@@ -2,5 +2,8 @@
   "name": "module-a",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "module-b-11": "^1.0.0"
+  }
 }

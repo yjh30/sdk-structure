@@ -8,7 +8,7 @@ const packagesArr = fs.readdirSync(resolve('packages'));
 
 packagesArr.forEach((packageName) => {
   if (fs.statSync(resolve(`packages/${packageName}`)).isDirectory()) {
-    externals[`packages/${packageName}`] = packageName;
+    externals[packageName] = packageName;
   }
 });
 

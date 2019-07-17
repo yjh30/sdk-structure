@@ -28,7 +28,7 @@ function updateIndexjs() {
   packages.forEach((packageName) => {
     const varName = camelCase(packageName);
     importContent += `import ${varName} from 'packages/${packageName}';\n`;
-    exportsContent += `exports.${varName} = '${varName}';\n`;
+    exportsContent += `exports.${varName} = ${varName};\n`;
     defaultContent += `  ${varName},\n`;
   });
 
