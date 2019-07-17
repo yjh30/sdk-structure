@@ -43,7 +43,7 @@ ${defaultContent}\n`, 'utf8');
 
 function createPackageJson() {
   // eslint-disable-next-line global-require
-  const packageJson = require('./package.init.json');
+  const packageJson = require('./package.config.json');
   packageJson.name = fullpackageName;
   fs.writeFileSync(`${fullpackageDir}/package.json`, JSON.stringify(packageJson, '', 2), 'utf8');
 }

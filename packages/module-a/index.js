@@ -1,7 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
-import moduleB from 'module-b-11';
+import main from './src/main';
 
-export default () => {
-  console.log('module-a');
-  moduleB();
-};
+export default main;

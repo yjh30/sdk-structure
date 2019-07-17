@@ -1,6 +1,16 @@
 {
-  "name": "module-b-11",
+  "name": "@esign/module-b",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "description": "",
+  "main": "lib/module-b.runtime.min.js",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "package.json",
+    "lib/"
+  ],
+  "publishConfig": {
+    "registry": "http://118.31.173.195:4873"
+  }
 }

@@ -1,9 +1,19 @@
 {
-  "name": "module-a",
+  "name": "@esign/module-a",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
+  "main": "lib/module-a.runtime.min.js",
+  "repository": "",
+  "author": "",
   "license": "MIT",
+  "files": [
+    "package.json",
+    "lib/"
+  ],
+  "publishConfig": {
+    "registry": "http://118.31.173.195:4873"
+  },
   "dependencies": {
-    "module-b-11": "^1.0.0"
+    "@esign/module-b": "^1.0.0"
   }
 }

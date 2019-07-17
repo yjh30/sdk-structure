@@ -1,6 +1,6 @@
 # sdk架构
 ## sdk项目搭建
-1. `lerna init --independent`初始化sdk项目
+1. `lerna init --independent`初始化项目
 > `lerna init --independent`为独立模式（sdk包的版本独立），`lerna init --fixed` 为固定模式（sdk包的版本一致）
 ```bash
 mkdir sdk-demo
@@ -15,16 +15,16 @@ lerna init
 ]
 ```
 
-3. sdk项目环境配置
+3. 环境配置
   - 配置babel.config.js
-  - 配置.eslintrc.js，代码本地提交未符合eslint规则将拒绝提交
+  - 配置.eslintrc.js，文件(过滤*min.js文件)本地提交未符合eslint规则将拒绝提交
 
 
 ## 创建、构建与发布sdk包
 
 1. 单包创建，构建与发布
-  - 单包创建命令：`npm run create:package --package=moduleName`
-  - 单包构建命令：`npm run build --package=moduleName`
+  - 单包创建命令：`npm run create:package --dirname=包目录名`
+  - 单包构建命令：`npm run build --dirname=包目录名`
   - 单包发布命令：`lerna publish`
 
 2. 整包创建，构建与发布
