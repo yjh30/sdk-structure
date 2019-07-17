@@ -11,7 +11,7 @@
     "create:package": "node ./build/create.package.js & npm run create:fullpackage"
   },
   "lint-staged": {
-    "packages/**/[*, *!min].{js,jsx}": [
+    "packages/**/*.{js,jsx}": [
       "./node_modules/.bin/eslint --fix",
       "git add"
     ]
