@@ -4,14 +4,15 @@ const internalIp = require('internal-ip');
 
 const resolve = filePath => path.resolve(__dirname, '../../', filePath);
 const dirname = process.env.npm_config_dirname;
+const runtime = process.env.npm_config_runtime;
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: resolve(`packages/${dirname}/src/main.js`),
+    app: resolve(`packages/${dirname}/example/${runtime ? 'example' : 'example.umd'}.js`),
   },
   output: {
-    path: resolve(`packages/${dirname}/dist`),
+    path: resolve(`packages/${dirname}/lib/`),
     filename: '[name].js',
     publicPath: '/',
   },
@@ -44,8 +45,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(`packages/${dirname}/src/index.html`),
+      template: resolve(`packages/${dirname}/example/index.html`),
       inject: true,
+      libUrl: !runtime ? `/${dirname}.min.js` : '',
     }),
   ],
 };

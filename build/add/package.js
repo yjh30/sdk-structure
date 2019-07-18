@@ -43,4 +43,6 @@ shell.touch(`${packagePath}/index.js`);
 
 const examplePath = path.join(dirnamePath, 'example');
 shell.mkdir(examplePath);
+shell.touch(`${examplePath}/example.js`);
+shell.touch(`${examplePath}/example.umd.js`);
 fs.writeFileSync(`${examplePath}/index.html`, htmlTpl, 'utf8');

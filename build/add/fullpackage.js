@@ -4,20 +4,21 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const camelCase = require('camelcase');
+const htmlTpl = require('./html.template');
 
-const resolve = fileName => path.resolve(__dirname, '../', fileName);
+const resolve = fileName => path.resolve(__dirname, '../../', fileName);
 
-const fullpackageName = path.basename(process.cwd());
-const fullpackageDir = resolve(`packages/${fullpackageName}`);
+const dirname = path.basename(process.cwd());
+const dirnamePath = resolve(`packages/${dirname}`);
 
 function updateIndexjs() {
-  const packages = [];
+  const packageDirnames = [];
   fs.readdirSync(resolve('packages')).forEach((dir) => {
-    if (dir === fullpackageName) {
+    if (dir === dirname) {
       return;
     }
     if (fs.statSync(resolve(`packages/${dir}`)).isDirectory()) {
-      packages.push(dir);
+      packageDirnames.push(dir);
     }
   });
 
@@ -25,16 +26,21 @@ function updateIndexjs() {
   let exportsContent = '';
   let defaultContent = 'export default {\n';
 
-  packages.forEach((packageName) => {
-    const varName = camelCase(packageName);
-    importContent += `import ${varName} from 'packages/${packageName}';\n`;
+  packageDirnames.forEach((packageDirname) => {
+    const varName = camelCase(packageDirname);
+    importContent += `import ${varName} from '@esign/${packageDirname}';\n`;
     exportsContent += `exports.${varName} = ${varName};\n`;
     defaultContent += `  ${varName},\n`;
   });
 
   defaultContent += '};';
 
-  fs.writeFileSync(`${fullpackageDir}/index.js`,
+  const packagePath = path.join(dirnamePath, 'package');
+  if (!fs.existsSync(packagePath)) {
+    shell.mkdir(packagePath);
+  }
+
+  fs.writeFileSync(`${packagePath}/index.js`,
     `/* eslint-disable */\n
 ${importContent}
 ${exportsContent}
@@ -44,14 +50,30 @@ ${defaultContent}\n`, 'utf8');
 function createPackageJson() {
   // eslint-disable-next-line global-require
   const packageJson = require('./package.config.json');
-  packageJson.name = fullpackageName;
-  fs.writeFileSync(`${fullpackageDir}/package.json`, JSON.stringify(packageJson, '', 2), 'utf8');
+
+  packageJson.name = `@esign/${dirname}`;
+  packageJson.main = `lib/${dirname}.runtime.min.js`;
+  packageJson.files = [
+    'package.json',
+    'lib/',
+  ];
+  packageJson.publishConfig = {
+    registry: 'http://118.31.173.195:4873',
+  };
+  fs.writeFileSync(`${dirnamePath}/package.json`, JSON.stringify(packageJson, '', 2), 'utf8');
 }
 
-process.chdir(`${process.cwd()}/packages`);
-if (!fs.existsSync(fullpackageDir)) {
-  shell.mkdir(fullpackageDir);
+function createExample() {
+  const examplePath = path.join(dirnamePath, 'example');
+  shell.mkdir(examplePath);
+  shell.touch(`${examplePath}/example.js`);
+  shell.touch(`${examplePath}/example.umd.js`);
+  fs.writeFileSync(`${examplePath}/index.html`, htmlTpl, 'utf8');
+}
+
+if (!fs.existsSync(dirnamePath)) {
+  shell.mkdir(dirnamePath);
   createPackageJson();
+  createExample();
 }
 updateIndexjs();
-process.chdir(path.join(process.cwd(), '../'));

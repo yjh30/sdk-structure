@@ -6,12 +6,14 @@
   "license": "MIT",
   "scripts": {
     "precommit": "lint-staged",
+    "add:fullpackage": "node ./build/add/fullpackage.js",
+    "add:package": "node ./build/add/package.js & npm run add:fullpackage",
     "build:default": "webpack --config ./build/build/webpack.config.js",
     "build:umd": "npm run build:default",
     "build": "npm run build:default --runtime",
-    "dev": "webpack-dev-server --inline --progress --config ./build/dev/webpack.config.js",
-    "add:fullpackage": "node ./build/add/fullpackage.js",
-    "add:package": "node ./build/add/package.js"
+    "dev:default": "webpack-dev-server --inline --progress --config ./build/dev/webpack.config.js",
+    "dev:umd": "npm run dev:default",
+    "dev": "npm run dev:default --runtime"
   },
   "lint-staged": {
     "packages/**/[*, *!min].{js,jsx}": [

@@ -20,7 +20,7 @@ function updateEntry() {
   if (!runtime) {
     key = `${dirname}.min`;
   }
-  entry[key] = resolve(`packages/${dirname}/index.js`);
+  entry[key] = resolve(`packages/${dirname}/package/index.js`);
 
   const buildFileFullPath = resolve(`packages/${dirname}/lib/${key}.js`);
   return {
