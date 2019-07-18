@@ -6,9 +6,11 @@ module.exports = `
 <head>
 	<meta charset="UTF-8">
 	<title>sdk test</title>
-</head>
+	<% if(htmlWebpackPlugin.options.libUrl) { %>
+    <script src="<%= htmlWebpackPlugin.options.libUrl %>"></script>
+  <% } %>
 <body>
-	
+
 </body>
 </html>
 `;

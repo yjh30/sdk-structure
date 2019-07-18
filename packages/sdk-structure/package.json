@@ -8,9 +8,14 @@
   "license": "MIT",
   "files": [
     "package.json",
-    "lib/"
+    "lib/",
+    "README.md"
   ],
   "publishConfig": {
     "registry": "http://118.31.173.195:4873"
+  },
+  "dependencies": {
+    "@esign/module-a": "^1.0.0",
+    "@esign/module-b": "^1.0.0"
   }
 }

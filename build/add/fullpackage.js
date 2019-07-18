@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 
 const path = require('path');
@@ -11,17 +12,17 @@ const resolve = fileName => path.resolve(__dirname, '../../', fileName);
 const dirname = path.basename(process.cwd());
 const dirnamePath = resolve(`packages/${dirname}`);
 
-function updateIndexjs() {
-  const packageDirnames = [];
-  fs.readdirSync(resolve('packages')).forEach((dir) => {
-    if (dir === dirname) {
-      return;
-    }
-    if (fs.statSync(resolve(`packages/${dir}`)).isDirectory()) {
-      packageDirnames.push(dir);
-    }
-  });
+const packageDirnames = [];
+fs.readdirSync(resolve('packages')).forEach((dir) => {
+  if (dir === dirname) {
+    return;
+  }
+  if (fs.statSync(resolve(`packages/${dir}`)).isDirectory()) {
+    packageDirnames.push(dir);
+  }
+});
 
+function updateIndexjs() {
   let importContent = '';
   let exportsContent = '';
   let defaultContent = 'export default {\n';
@@ -56,10 +57,18 @@ function createPackageJson() {
   packageJson.files = [
     'package.json',
     'lib/',
+    'README.md',
   ];
   packageJson.publishConfig = {
     registry: 'http://118.31.173.195:4873',
   };
+  packageJson.dependencies = {};
+  packageDirnames.forEach((packageDirname) => {
+    // eslint-disable-next-line import/no-dynamic-require
+    const { name, version } = require(resolve(`packages/${packageDirname}/package.json`));
+    packageJson.dependencies[name] = `^${version}`;
+  });
+
   fs.writeFileSync(`${dirnamePath}/package.json`, JSON.stringify(packageJson, '', 2), 'utf8');
 }
 
@@ -75,5 +84,6 @@ if (!fs.existsSync(dirnamePath)) {
   shell.mkdir(dirnamePath);
   createPackageJson();
   createExample();
+  shell.touch(`${dirnamePath}/README.md`);
 }
 updateIndexjs();

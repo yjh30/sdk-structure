@@ -30,6 +30,7 @@ packageJson.main = `lib/${dirname}.runtime.min.js`;
 packageJson.files = [
   'package.json',
   'lib/',
+  'README.md',
 ];
 packageJson.publishConfig = {
   registry: 'http://118.31.173.195:4873',
@@ -46,3 +47,5 @@ shell.mkdir(examplePath);
 shell.touch(`${examplePath}/example.js`);
 shell.touch(`${examplePath}/example.umd.js`);
 fs.writeFileSync(`${examplePath}/index.html`, htmlTpl, 'utf8');
+
+shell.touch(`${dirnamePath}/README.md`);

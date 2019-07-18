@@ -1,3 +1,3 @@
-import moduleA from '../package/index';
+import moduleA from '../lib/module-a.min';
 
 moduleA();

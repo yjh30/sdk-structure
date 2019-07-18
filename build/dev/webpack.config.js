@@ -1,18 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const internalIp = require('internal-ip');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = filePath => path.resolve(__dirname, '../../', filePath);
 const dirname = process.env.npm_config_dirname;
-const runtime = process.env.npm_config_runtime;
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: resolve(`packages/${dirname}/example/${runtime ? 'example' : 'example.umd'}.js`),
+    'example.runtime': resolve(`packages/${dirname}/example/example.js`),
+    'example.umd': resolve(`packages/${dirname}/example/example.umd.js`),
   },
   output: {
-    path: resolve(`packages/${dirname}/lib/`),
+    path: resolve(`packages/${dirname}/dist/`),
     filename: '[name].js',
     publicPath: '/',
   },
@@ -47,7 +48,14 @@ module.exports = {
       filename: 'index.html',
       template: resolve(`packages/${dirname}/example/index.html`),
       inject: true,
-      libUrl: !runtime ? `/${dirname}.min.js` : '',
+      libUrl: `/${dirname}.min.js`,
     }),
+    new CopyWebpackPlugin([
+      {
+        from: resolve(`packages/${dirname}/lib/`),
+        to: resolve(`packages/${dirname}/dist/`),
+        ignore: ['.*'],
+      },
+    ]),
   ],
 };

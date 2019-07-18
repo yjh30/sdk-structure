@@ -10,10 +10,9 @@
     "add:package": "node ./build/add/package.js & npm run add:fullpackage",
     "build:default": "webpack --config ./build/build/webpack.config.js",
     "build:umd": "npm run build:default",
-    "build": "npm run build:default --runtime",
-    "dev:default": "webpack-dev-server --inline --progress --config ./build/dev/webpack.config.js",
-    "dev:umd": "npm run dev:default",
-    "dev": "npm run dev:default --runtime"
+    "build:runtime": "npm run build:default --runtime",
+    "build": "npm run build:umd & npm run build:runtime",
+    "dev": "webpack-dev-server --inline --progress --config ./build/dev/webpack.config.js"
   },
   "lint-staged": {
     "packages/**/[*, *!min].{js,jsx}": [
@@ -30,6 +29,7 @@
     "babel-loader": "^8.0.6",
     "babel-preset-stage-2": "^6.24.1",
     "camelcase": "^5.3.1",
+    "copy-webpack-plugin": "^5.0.3",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-loader": "^2.2.1",
