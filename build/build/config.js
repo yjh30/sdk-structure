@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const camelCase = require('camelcase');
 
-const resolve = filePath => path.resolve(__dirname, '../', filePath);
+const resolve = filePath => path.resolve(__dirname, '../../', filePath);
 const runtime = process.env.npm_config_runtime;
 const dirname = process.env.npm_config_dirname || path.basename(process.cwd());
 

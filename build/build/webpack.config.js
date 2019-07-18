@@ -10,7 +10,7 @@ const {
   eslintExclude,
 } = require('./config');
 
-const resolve = fileName => path.resolve(__dirname, '../', fileName);
+const resolve = fileName => path.resolve(__dirname, '../../', fileName);
 const dirname = process.env.npm_config_dirname || path.basename(process.cwd());
 const dirnamePath = resolve(`packages/${dirname}`);
 

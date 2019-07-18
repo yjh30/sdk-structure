@@ -4,8 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const packageJson = require('./package.config.json');
+const htmlTpl = require('./html.template');
 
-const resolve = fileName => path.resolve(__dirname, '../', fileName);
+const resolve = fileName => path.resolve(__dirname, '../../', fileName);
 const dirname = process.env.npm_config_dirname;
 
 if (!dirname) {
@@ -13,13 +14,17 @@ if (!dirname) {
   return;
 }
 
-const packagePath = resolve(`packages/${dirname}`);
-if (fs.existsSync(packagePath)) {
+if (!fs.existsSync(resolve('packages'))) {
+  shell.mkdir(resolve('packages'));
+}
+
+const dirnamePath = resolve(`packages/${dirname}`);
+if (fs.existsSync(dirnamePath)) {
   console.log('packages目录下已存在该sdk包');
   return;
 }
 
-shell.mkdir(packagePath);
+shell.mkdir(dirnamePath);
 packageJson.name = `@esign/${dirname}`;
 packageJson.main = `lib/${dirname}.runtime.min.js`;
 packageJson.files = [
@@ -29,5 +34,13 @@ packageJson.files = [
 packageJson.publishConfig = {
   registry: 'http://118.31.173.195:4873',
 };
-fs.writeFileSync(`${packagePath}/package.json`, JSON.stringify(packageJson, '', 2), 'utf8');
-fs.writeFileSync(`${packagePath}/index.js`, '', 'utf8');
+
+fs.writeFileSync(`${dirnamePath}/package.json`, JSON.stringify(packageJson, '', 2), 'utf8');
+
+const packagePath = path.join(dirnamePath, 'package');
+shell.mkdir(packagePath);
+shell.touch(`${packagePath}/index.js`);
+
+const examplePath = path.join(dirnamePath, 'example');
+shell.mkdir(examplePath);
+fs.writeFileSync(`${examplePath}/index.html`, htmlTpl, 'utf8');
