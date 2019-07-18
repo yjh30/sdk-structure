@@ -4,7 +4,7 @@ const internalIp = require('internal-ip');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = filePath => path.resolve(__dirname, '../../', filePath);
-const dirname = process.env.npm_config_dirname;
+const dirname = process.env.npm_config_dirname || path.basename(process.cwd());
 
 module.exports = {
   mode: 'development',
