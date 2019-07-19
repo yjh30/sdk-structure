@@ -24,51 +24,59 @@ lerna init
 1. 创建sdk包
 ```bash
 npm run add:package --dirname=module-a
-
+```
+```
 ├── _packages
     ├── _module-a
-        ├── example 测试sdk包api目录
-        ├── package sdk包源码目录
-        ├── package.json
+        ├── _example
+            ├── example.js
+            ├── example.umd.js
+            ├── index.html
+        ├── _package
+            ├── index.js
+        ├── package.json (自动设置name, version, main, files, publishConfig字段配置)
         ├── README.md
-
+```
 2. 构建sdk包
 ```bash
 npm run build --dirname=module-a
 ```
-构建sdk后会生产一个lib目录
-lib目录 |  
--|-|-
-module-a.min.js |
-module-a.runtime.js |
+自动创建lib目录，并且生成commonjs2与umd规范的js文件
+```
+├── _packages
+    ├── _module-a
+        ├── _example
+            ├── example.js
+            ├── example.umd.js
+            ├── index.html
+        ├── lib
+            ├── module-a.min.js (umd)
+            ├── module-a.runtime.min.js (commonjs2)
+        ├── _package
+            ├── index.js
+        ├── package.json (自动设置name, version, main, files, publishConfig字段配置)
+        ├── README.md
+```
 
 3. 测试sdk包
-
-
-
-## 创建、构建与发布sdk包
-
-1. 单包创建，构建与发布
-  - 单包创建命令：`npm run create:package --dirname=包目录名`
-  - 单包构建命令：`npm run build --dirname=包目录名`
-  - 单包发布命令：`lerna publish`
-
-2. 整包创建，构建与发布
-> 包名自动设置为项目根目录名
-  - 整包创建命令：`npm run create:fullpackage`
-  - 整包构建命令：`npm run build`
-  - 整包发布命令：`lerna publish`
-
-3. 构建commonjs2规范的sdk包的依赖处理
-> sdk包构建时会防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)，如下sdk包module-a源码引入sdk包module-b
+- 测试运行时sdk包，example.js
 ```js
-import moduleA from 'packages/module-b'
+import moduleA from '../lib/module-a.min';
+
+moduleA();
 ```
-配置webpack externals，resolve.alias 最终打包成`require(module-b)`的引入处理，最后你需要处理module-a包packages.json peerDependencies，运行命令：`lerna add module-b --scope module-a --include-peer-dependencies`
 
+- 测试umd sdk包，example.umd.js
+```js
+console.log(window.esignModuleA);
+window.esignModuleA();
+```
 
-
-## sdk包页面测试
+- 命令
+```bash
+npm run dev --dirname=module-a
+```
+将自动在浏览器打开一个html标签页，运行example.js与example.umd.js文件代码
 
 
 ## 规范
