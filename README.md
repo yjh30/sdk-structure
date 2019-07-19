@@ -133,7 +133,8 @@ window.esignModuleA();
 
 ## 整包创建，构建，测试
 1. 整包自动创建
-整包的创建是基于单包创建而自动创建的，只要通过`npm run add:package --dirname=xxx`创建单包，那么将会在packages目录下自动建立整包目录；整包的目录名跟sdk项目目录名保持一致， 例如：通过命令`npm run add:package --dirname=module-a`，`npm run add:package --dirname=module-b` 创建了两个单包，那么整包目录如下：
+
+> 整包的创建是基于单包创建而自动创建的，只要通过`npm run add:package --dirname=xxx`创建单包，那么将会在packages目录下自动建立整包目录；整包的目录名跟sdk项目目录名保持一致， 例如：通过命令`npm run add:package --dirname=module-a`，`npm run add:package --dirname=module-b` 创建了两个单包，那么整包目录如下：
 ```
 ├── packages
     ├── sdk-demko
@@ -162,7 +163,7 @@ export default {
   moduleB,
 };
 ```
-- package.json自动将会自动设置单包依赖
+- package.json将会自动设置单包依赖
 ```json
 {
   "dependencies": {
