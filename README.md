@@ -19,6 +19,32 @@ lerna init
   - 配置babel.config.js
   - 配置.eslintrc.js，文件(过滤*min.js文件)本地提交未符合eslint规则将拒绝提交
 
+## sdk包创建，构建，测试
+
+1. 创建sdk包
+```bash
+npm run add:package --dirname=module-a
+
+├── _packages
+    ├── _module-a
+        ├── example 测试sdk包api目录
+        ├── package sdk包源码目录
+        ├── package.json
+        ├── README.md
+
+2. 构建sdk包
+```bash
+npm run build --dirname=module-a
+```
+构建sdk后会生产一个lib目录
+lib目录 |  
+-|-|-
+module-a.min.js |
+module-a.runtime.js |
+
+3. 测试sdk包
+
+
 
 ## 创建、构建与发布sdk包
 
