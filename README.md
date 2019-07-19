@@ -114,24 +114,21 @@ npm run build --dirname=module-a
 ```
 
 3. 测试sdk包
-- 测试运行时sdk包，example.js
+测试运行时sdk包，example.js
 ```js
 import moduleA from '../lib/module-a.min';
 
 moduleA();
 ```
 
-- 测试umd sdk包，example.umd.js
+测试umd sdk包，example.umd.js
 ```js
 console.log(window.esignModuleA);
 window.esignModuleA();
 ```
 
-- 命令
-```bash
-npm run dev --dirname=module-a
-```
-将自动在浏览器打开一个html标签页，运行example.js与example.umd.js文件代码
+执行命令 `npm run dev --dirname=module-a` 进行测试，将自动在浏览器打开一个html标签页，运行example.js与example.umd.js文件代码
+
 
 
 ## 整包创建，构建，测试
