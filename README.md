@@ -1,7 +1,10 @@
 [TOC]
 
 # sdk架构详述
-## 目标
+## 目标（同业务域的单包整合一起开发，测试，单包、整包发布，文档输出）
+> 示例背景：我创建了一个用于pc,h5端的埋点sdk包模块，假如包名为@esign/module-a，后续我又创建了
+一个用于taro工具开发使用的跨端埋点sdk包模块，假如包名为@esign/module-b，且@esign/module-b依赖了
+@esign/module-a包，这两个包都属于埋点相关且单包有依赖另一个单包，在这样的背景下，我们希望将其整合在一起开发，测试，单包、整包发布，文档输出，对，我们的目标就是同业务域的单包整合一起开发，测试，单包、整包发布，文档输出，下面就是整合sdk项目的详细步骤
 
 ## sdk项目搭建
 1. `lerna init --independent`初始化项目
@@ -42,9 +45,9 @@ lerna init
     ├── babel.config.js
     ├── .eslintrc.js
     ├── bin-script
-        ├── add 包含创建sdk包脚本
-        ├── build 包含构建sdk包脚本
-        ├── dev 包含测试sdk包脚本
+        ├── add 包含创建sdk包脚本目录
+        ├── build 包含构建sdk包脚本目录
+        ├── dev 包含测试sdk包脚本目录
 ```
 
 
