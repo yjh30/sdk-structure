@@ -1,6 +1,6 @@
 {
   "name": "@esign/module-a",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/module-a.runtime.min.js",
   "repository": "",
@@ -14,6 +14,6 @@
     "registry": "http://118.31.173.195:4873"
   },
   "dependencies": {
-    "@esign/module-b": "^1.0.0"
+    "@esign/module-b": "^1.0.1"
   }
 }
