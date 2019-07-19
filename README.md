@@ -1,23 +1,48 @@
 # sdk架构
 ## sdk项目搭建
 1. `lerna init --independent`初始化项目
-> `lerna init --independent`为独立模式（sdk包的版本独立），`lerna init --fixed` 为固定模式（sdk包的版本一致）
+> `lerna init --independent`为独立模式（sdk包发布的版本独立），`lerna init --fixed` 为固定模式（sdk包发布的版本一致）
 ```bash
 mkdir sdk-demo
 cd sdk-demo
 lerna init
 ```
-
-2. 设置lerna包的管理目录
-```json
-"packages": [
-  "packages/*"
-]
+```
+├── sdk-demo
+    ├── packages
+    ├── package.json
+    ├── lerna.json
 ```
 
-3. 环境配置
+2. 设置lerna包的管理目录(修改lerna.json)
+```json
+{
+  "packages": [
+    "packages/*"
+  ]
+}
+```
+
+3. 项目配置
+  - .gitignore
+  - README.md
   - 配置babel.config.js
   - 配置.eslintrc.js，文件(过滤*min.js文件)本地提交未符合eslint规则将拒绝提交
+  - 构建命令目录bin-script
+```
+├── sdk-demo
+    ├── packages
+    ├── package.json
+    ├── lerna.json
+    ├── .gitignore
+    ├── babel.config.js
+    ├── .eslintrc.js
+    ├── bin-script
+        ├── add 包含创建sdk包脚本
+        ├── build 包含构建sdk包脚本
+        ├── dev 包含测试sdk包脚本
+```
+
 
 ## sdk包创建，构建，测试
 
@@ -26,33 +51,55 @@ lerna init
 npm run add:package --dirname=module-a
 ```
 ```
-├── _packages
-    ├── _module-a
-        ├── _example
+├── packages
+    ├── module-a
+        ├── example
             ├── example.js
             ├── example.umd.js
             ├── index.html
-        ├── _package
+        ├── package
             ├── index.js
         ├── package.json (自动设置name, version, main, files, publishConfig字段配置)
         ├── README.md
 ```
+package.json自动配置
+```json
+{
+  "name": "@esign/module-a",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/module-a.runtime.min.js",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "package.json",
+    "lib/"
+  ],
+  "publishConfig": {
+    "registry": "http://118.31.173.195:4873"
+  }
+}
+
+```
+
+
 2. 构建sdk包
 ```bash
 npm run build --dirname=module-a
 ```
 自动创建lib目录，并且生成commonjs2与umd规范的js文件
 ```
-├── _packages
-    ├── _module-a
-        ├── _example
+├── packages
+    ├── module-a
+        ├── example
             ├── example.js
             ├── example.umd.js
             ├── index.html
         ├── lib
             ├── module-a.min.js (umd)
             ├── module-a.runtime.min.js (commonjs2)
-        ├── _package
+        ├── package
             ├── index.js
         ├── package.json (自动设置name, version, main, files, publishConfig字段配置)
         ├── README.md
