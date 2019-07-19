@@ -7,7 +7,7 @@
 @esign/module-a包，这两个包都属于埋点相关且单包有依赖另一个单包，在这样的背景下，我们希望将其整合在一起开发，测试，单包、整包发布，文档输出，对，我们的目标就是同业务域的单包整合一起开发，测试，单包、整包发布，文档输出，下面就是整合sdk项目的详细步骤
 
 ## sdk项目搭建
-1. `lerna init --independent`初始化项目
+#### 1. `lerna init --independent`初始化项目
 > `lerna init --independent`为独立模式（sdk包发布的版本独立），`lerna init --fixed` 为固定模式（sdk包发布的版本一致）
 ```bash
 mkdir sdk-demo
@@ -21,7 +21,7 @@ lerna init
     ├── lerna.json
 ```
 
-2. 设置lerna包的管理目录(修改lerna.json)
+#### 2. 设置lerna包的管理目录(修改lerna.json)
 ```json
 {
   "packages": [
@@ -30,7 +30,7 @@ lerna init
 }
 ```
 
-3. 项目配置
+#### 3. 项目配置
   - .gitignore
   - README.md
   - 配置babel.config.js
@@ -53,7 +53,7 @@ lerna init
 
 ## sdk单包创建，构建，测试
 
-1. 创建sdk包
+#### 1. 创建sdk包
 - 命令
 ```bash
 npm run add:package --dirname=module-a
@@ -95,7 +95,7 @@ npm run add:package --dirname=module-a
 lerna add --dev @esign/module-b --scope=@esign/module-a
 ```
 
-2. 构建sdk包
+#### 2. 构建sdk包
 ```bash
 npm run build --dirname=module-a
 ```
@@ -116,7 +116,7 @@ npm run build --dirname=module-a
         ├── README.md
 ```
 
-3. 测试sdk包
+#### 3. 测试sdk包
 测试运行时sdk包，example.js
 ```js
 import moduleA from '../lib/module-a.min';
@@ -135,7 +135,7 @@ window.esignModuleA();
 
 
 ## 整包创建，构建，测试
-1. 整包自动创建
+#### 1. 整包自动创建
 
 > 整包的创建是基于单包创建而自动创建的，只要通过`npm run add:package --dirname=xxx`创建单包，那么将会在packages目录下自动建立整包目录；整包的目录名跟sdk项目目录名保持一致， 例如：通过命令`npm run add:package --dirname=module-a`，`npm run add:package --dirname=module-b` 创建了两个单包，那么整包目录如下：
 ```
@@ -176,13 +176,13 @@ export default {
 }
 ```
 
-2. 整包构建
+#### 2. 整包构建
 > 构建命令未带--dirname参数，其他同单包构建流程
 ```bash
 npm run build
 ```
 
-3. 整包测试
+#### 3. 整包测试
 > 测试命令未带--dirname参数，其他同单包测试流程
 ```bash
 npm run dev
