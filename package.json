@@ -7,11 +7,11 @@
   "scripts": {
     "precommit": "lint-staged",
     "add:fullpackage": "node ./bin-script/add/fullpackage.js",
-    "add:package": "node ./bin-script/add/package.js & npm run add:fullpackage",
+    "add:package": "node ./bin-script/add/package.js && npm run add:fullpackage",
     "build:default": "webpack --config ./bin-script/build/webpack.config.js",
     "build:umd": "npm run build:default",
     "build:runtime": "npm run build:default --runtime",
-    "build": "npm run build:umd & npm run build:runtime",
+    "build": "npm run build:umd && npm run build:runtime",
     "dev": "webpack-dev-server --inline --progress --config ./bin-script/dev/webpack.config.js"
   },
   "lint-staged": {
@@ -45,10 +45,10 @@
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "dependencies": {
     "core-js": "3"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
