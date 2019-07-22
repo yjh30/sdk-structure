@@ -7,6 +7,7 @@ const presets = [
         browsers: ['> 1%', 'last 2 versions', 'not ie <= 8'],
       },
       useBuiltIns: 'usage',
+      corejs: 3,
     },
     'stage-2',
   ],

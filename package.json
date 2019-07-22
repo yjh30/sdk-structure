@@ -25,6 +25,7 @@
     "@babel/core": "^7.5.4",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
+    "@babel/runtime-corejs3": "^7.5.5",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "babel-preset-stage-2": "^6.24.1",
@@ -46,5 +47,8 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "core-js": "3"
+  }
 }
