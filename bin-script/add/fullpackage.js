@@ -64,10 +64,14 @@ function createFullPackageJson() {
   });
 }
 
-if (!fs.existsSync(dirnamePath)) {
-  shell.mkdir(dirnamePath);
-  createFullPackageJson();
-  createExample(dirnamePath);
-  shell.touch(`${dirnamePath}/README.md`);
+function init() {
+  if (!fs.existsSync(dirnamePath)) {
+    shell.mkdir(dirnamePath);
+    createFullPackageJson();
+    createExample(dirnamePath);
+    shell.touch(`${dirnamePath}/README.md`);
+  }
+  updateIndexjs();
 }
-updateIndexjs();
+
+init();

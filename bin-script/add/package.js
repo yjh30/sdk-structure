@@ -35,16 +35,20 @@ function createPackage(_dirnamePath) {
   shell.touch(`${packagePath}/index.js`);
 }
 
-const dirnamePath = mkDirnamePath();
-if (dirnamePath === false) {
-  return;
+function init() {
+  const dirnamePath = mkDirnamePath();
+  if (dirnamePath === false) {
+    return;
+  }
+
+  createPackageJson({
+    dirname,
+    dirnamePath,
+  });
+  createPackage(dirnamePath);
+  createExample(dirnamePath);
+
+  shell.touch(`${dirnamePath}/README.md`);
 }
 
-createPackageJson({
-  dirname,
-  dirnamePath,
-});
-createPackage(dirnamePath);
-createExample(dirnamePath);
-
-shell.touch(`${dirnamePath}/README.md`);
+init();

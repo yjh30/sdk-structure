@@ -23,14 +23,14 @@ function createPackageJson({
   };
 
   if (typeof createBefore === 'function') {
-    createBefore({ ...json });
+    createBefore(json);
   }
 
   fs.writeFileSync(`${dirnamePath}/package.json`, JSON.stringify(json, '', 2), 'utf8');
 }
 
-function createExample(_dirnamePath) {
-  const examplePath = path.join(_dirnamePath, 'example');
+function createExample(dirnamePath) {
+  const examplePath = path.join(dirnamePath, 'example');
   shell.mkdir(examplePath);
   shell.touch(`${examplePath}/example.js`);
   shell.touch(`${examplePath}/example.umd.js`);
