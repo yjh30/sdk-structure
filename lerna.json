@@ -3,7 +3,7 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md"],
+      "ignoreChanges": ["*.md", "packages/**/(example|package)/"],
       "message": "chore(release): publish"
     },
     "bootstrap": {
