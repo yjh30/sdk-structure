@@ -51,9 +51,9 @@ lerna init
 ```
 
 
-## sdk单包创建，构建，测试
+## 单包创建，构建，测试
 
-#### 1. 创建sdk包
+#### 1. 创建单包
 - 命令
 ```bash
 npm run add:package --dirname=module-a
@@ -95,7 +95,7 @@ npm run add:package --dirname=module-a
 lerna add --dev @esign/module-b --scope=@esign/module-a
 ```
 
-#### 2. 构建sdk包
+#### 2. 构建单包
 > 备注：`npm run build` 实际是执行 `npm run build:umd & npm run build:runtime` ，window系统执行 `npm run build` 实际只会执行 `npm run build:umd` 所以windows系统需要分别执行 `npm run build:umd --dirname=xxx` 和 `npm run build:runtime --dirname=xxx` 命令进行构建
 
 ```bash
@@ -118,7 +118,7 @@ npm run build --dirname=module-a
         ├── README.md
 ```
 
-#### 3. 测试sdk包
+#### 3. 测试单包
 测试运行时sdk包，example.js
 ```js
 import moduleA from '../lib/module-a.min';
