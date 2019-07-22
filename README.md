@@ -118,6 +118,12 @@ npm run build --dirname=module-a
         ├── README.md
 ```
 
+**备注：** umd构建输出代码库的api规范使用说明，假如包的目录名为module-a，那么我们将入口起点返回的所有属性都赋值给一个变量moduleA（如果包目录名为esign-data，则变量名为esignData），且挂载在全局window.esign对象上；
+```js
+// 我们将入口起点返回的所有属性都赋值给一个变量moduleA（假如包的目录名为module-a），且挂载在全局window.esign对象上
+window.esign=window.esign||{},window.esign.moduleA=_entry_return_;
+```
+
 #### 3. 测试单包
 测试运行时sdk包，example.js
 ```js
@@ -128,8 +134,8 @@ moduleA();
 
 测试umd sdk包，example.umd.js
 ```js
-console.log(window.esignModuleA);
-window.esignModuleA();
+console.log(window.esign.moduleA);
+window.esign.moduleA();
 ```
 
 执行命令 `npm run dev --dirname=module-a` 进行测试，将自动在浏览器打开一个html标签页，运行example.js与example.umd.js文件代码

@@ -30,9 +30,8 @@ function updateEntry() {
 
 function updateOutput() {
   const getLibrary = () => {
-    let name = camelCase(dirname);
-    name = `${name.charAt(0).toUpperCase()}${name.substring(1)}`;
-    return `esign${name}`;
+    const name = camelCase(dirname);
+    return ['esign', name];
   };
   if (!runtime) {
     output = {

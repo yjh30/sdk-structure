@@ -1,2 +1,2 @@
 
-window.esignModuleA();
+window.esign.moduleA();
