@@ -71,6 +71,7 @@ function init() {
     createExample(dirnamePath);
     shell.touch(`${dirnamePath}/README.md`);
   }
+  createFullPackageJson();
   updateIndexjs();
 }
 

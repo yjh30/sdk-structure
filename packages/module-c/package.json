@@ -1,8 +1,8 @@
 {
-  "name": "@esign/sdk-structure",
+  "name": "@esign/module-c",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/sdk-structure.runtime.min.js",
+  "main": "lib/module-c.runtime.min.js",
   "repository": "",
   "author": "",
   "license": "MIT",
@@ -13,10 +13,5 @@
   ],
   "publishConfig": {
     "registry": "http://118.31.173.195:4873"
-  },
-  "dependencies": {
-    "@esign/module-a": "^1.0.1",
-    "@esign/module-b": "^1.0.1",
-    "@esign/module-c": "^1.0.0"
   }
 }

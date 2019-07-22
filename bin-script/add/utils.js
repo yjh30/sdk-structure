@@ -25,7 +25,6 @@ function createPackageJson({
   if (typeof createBefore === 'function') {
     createBefore(json);
   }
-
   fs.writeFileSync(`${dirnamePath}/package.json`, JSON.stringify(json, '', 2), 'utf8');
 }
 

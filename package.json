@@ -12,7 +12,8 @@
     "build:umd": "npm run build:default",
     "build:runtime": "npm run build:default --runtime",
     "build": "npm run build:umd && npm run build:runtime",
-    "dev": "webpack-dev-server --inline --progress --config ./bin-script/dev/webpack.config.js"
+    "dev": "webpack-dev-server --inline --progress --config ./bin-script/dev/webpack.config.js",
+    "publish": "lerna publish"
   },
   "lint-staged": {
     "packages/**/[*, *!min].{js,jsx}": [
