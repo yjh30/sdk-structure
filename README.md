@@ -96,7 +96,7 @@ lerna add --dev @esign/module-b --scope=@esign/module-a
 ```
 
 #### 2. 构建单包
-> 备注：`npm run build` 实际是执行 `npm run build:umd & npm run build:runtime` ，window系统执行 `npm run build` 实际只会执行 `npm run build:umd` 所以windows系统需要分别执行 `npm run build:umd --dirname=xxx` 和 `npm run build:runtime --dirname=xxx` 命令进行构建
+> 备注：`npm run build` 实际是执行 `npm run build:umd && npm run build:runtime` ，window系统执行 `npm run build` 实际只会执行 `npm run build:umd` 所以windows系统需要分别执行 `npm run build:umd --dirname=xxx` 和 `npm run build:runtime --dirname=xxx` 命令进行构建
 
 ```bash
 npm run build --dirname=module-a
