@@ -13,9 +13,11 @@ const presets = [
   ],
 ];
 
+const plugins = [
+  '@babel/plugin-transform-modules-commonjs',
+];
+
 module.exports = {
   presets,
-  plugins: [
-    '@babel/plugin-transform-modules-commonjs',
-  ],
+  plugins,
 };
