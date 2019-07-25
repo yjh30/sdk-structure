@@ -1,6 +1,6 @@
 {
   "name": "@esign/module-b",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "description": "",
   "main": "lib/module-b.runtime.min.js",
   "repository": "",
