@@ -1,6 +1,6 @@
 {
   "name": "@esign/sdk-structure",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/sdk-structure.runtime.min.js",
   "repository": "",
