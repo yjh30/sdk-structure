@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@esign/module-a": "^1.0.3",
-    "@esign/module-b": "^1.0.2",
-    "@esign/module-c": "^1.0.0"
+    "@esign/module-b": "^1.0.2"
   }
 }
